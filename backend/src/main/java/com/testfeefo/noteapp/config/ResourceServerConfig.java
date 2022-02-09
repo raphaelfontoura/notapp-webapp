@@ -33,7 +33,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
             "/h2-console/**",
             "/api/v1/users",
             "/swagger-ui.html",
+            "/swagger-resources",
             "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/webjars/**",
+            "/v2/api-docs",
             "/actuator/**"
     };
 

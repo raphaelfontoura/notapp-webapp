@@ -10,12 +10,10 @@ import com.testfeefo.noteapp.services.exceptions.ResourceNotFoundException;
 import com.testfeefo.noteapp.services.exceptions.UnauthorizedException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.access.prepost.PostFilter;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Objects;
 
 @Service
 public class NoteService {
@@ -56,7 +54,7 @@ public class NoteService {
         var note = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note not found."));
         var user = authService.authenticated();
 
-        if (user != note.getUser()) {
+        if (!Objects.equals(user.getUsername(), note.getUser().getEmail())) {
             throw new UnauthorizedException("User not allowed.");
         }
         repository.delete(note);

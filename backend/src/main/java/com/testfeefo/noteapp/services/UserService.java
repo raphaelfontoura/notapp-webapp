@@ -1,6 +1,5 @@
 package com.testfeefo.noteapp.services;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.testfeefo.noteapp.dto.UserDto;
 import com.testfeefo.noteapp.dto.UserInputDto;
 import com.testfeefo.noteapp.entities.User;
