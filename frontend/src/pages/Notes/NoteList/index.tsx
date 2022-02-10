@@ -15,7 +15,7 @@ const Notes = (props: Props) => {
   useEffect(() => {
     const params = {
       page: 0,
-      size: 2
+      size: 4
     }
     setIsLoading(true);
     try {

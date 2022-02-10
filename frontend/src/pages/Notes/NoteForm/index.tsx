@@ -1,9 +1,9 @@
-import "./styles.css";
+import './styles.css';
+
 import Button from 'core/components/Button';
-import { Note } from 'core/models/Note'
 import { makePrivateRequest } from 'core/utils/apiRequests';
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type ParamsId = {
   routeId: string;
@@ -11,26 +11,31 @@ type ParamsId = {
 
 const NoteForm = () => {
 
-  const [note, setNote] = useState<Note>();
-  const { routeId } = useParams<ParamsId>();
-
-  useEffect(() => {
-    makePrivateRequest({url:`/api/v1/notes/${routeId}`})
-      .then(response => {
-        setNote(response.data);
-      })
-  }, [routeId]);
+  const [text, setText] = useState<string>("");
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
-    console.log("Cliquei");
+    const data = {
+      noteText: text
+    };
+    makePrivateRequest({ url: "api/v1/notes", method:"POST", data})
+      .then(_response => {
+        navigate("/notes");
+      })
+    console.log(text);
   }
-  
-  console.log(note?.noteText);
+
+  const handleChange = (event:any) => {
+    setText(event.target.value);
+  }
 
   return (
     <div className="container card-container-shadow">
-      <textarea className="note-text-area" rows={16}>
-        {note?.noteText}
+      <textarea className="note-text-area" 
+        rows={16} 
+        value={text}
+        onChange={handleChange}
+        >
       </textarea>
       <Button label='Save' onClick={handleSubmit}/>
     </div>

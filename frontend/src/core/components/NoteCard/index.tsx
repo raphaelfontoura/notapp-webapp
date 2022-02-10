@@ -6,11 +6,10 @@ type Props = {
   children: string;
 }
 
-function NoteCard({ children }: Props) {
+function NoteCard({ children, noteId }: Props) {
   return (
     <div className="card-container-shadow note-card">
         <div className="buttons-notes">
-          <span>edit</span>
           <span>delete</span>
         </div>
         <div className="line-divisor"></div>
