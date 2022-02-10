@@ -10,7 +10,7 @@ const NoteRoute = () => {
     <Routes>
       <Route path="/" element={<PrivateRoute />}>
         <Route path="" element={<Notes />} />
-        <Route path=":routeId" element={<NoteForm />} />
+        <Route path="/new" element={<NoteForm />} />
       </Route>
     </Routes>
   )

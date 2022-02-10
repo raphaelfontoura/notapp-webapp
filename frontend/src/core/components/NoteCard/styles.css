@@ -12,6 +12,7 @@
 
 .buttons-notes span {
   margin-right: 18px;
+  cursor: pointer;
 }
 
 .line-divisor {
