@@ -1,0 +1,31 @@
+.note-card {
+  height: 260px;
+  width: 520px;
+  padding: 12px;
+}
+
+.buttons-notes {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.buttons-notes span {
+  margin-right: 18px;
+}
+
+.line-divisor {
+  border-top: 1px solid #474344;
+  margin: 6px 0;
+}
+
+.card-note-text {
+  margin: 10px 0;
+  flex: 1;
+  font-weight: bold;
+  font-size: 18px;
+  color: #474344;
+  height: 86%;
+  overflow: auto;
+  text-overflow: ellipsis;
+}

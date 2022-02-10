@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap');
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #e5e5e5;
+}
+
+.card-container-shadow {
+  background-color: #fff;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 20%);
+  border-radius: 4px;
+}
+
+.display-none {
+  display: none;
+}

@@ -1,0 +1,10 @@
+.button-default {
+  width: 496px;
+  height: 60px;
+  background-color: #80d7f5;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  text-transform: uppercase;
+}
