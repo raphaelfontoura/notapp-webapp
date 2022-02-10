@@ -1,0 +1,19 @@
+.card-container-shadow {
+  padding: 40px 65px;
+  display: flex;
+  height: 490px;
+  width: 627px;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.note-text-area {
+  border-radius: 4px;
+  resize: none;
+  color: #888;
+  font-size: 18px;
+  padding: 18px;
+  border: 1px solid #e5e5e5e5;
+  box-sizing: border-box;
+}

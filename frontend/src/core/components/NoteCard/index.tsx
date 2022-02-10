@@ -2,7 +2,8 @@ import "./styles.css";
 import React from 'react';
 
 type Props = {
-  children: string
+  noteId: number;
+  children: string;
 }
 
 function NoteCard({ children }: Props) {

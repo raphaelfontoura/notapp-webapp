@@ -1,43 +1,19 @@
-import "./styles.css";
-import React, { useEffect, useState } from 'react'
-import NoteCard from "core/components/NoteCard";
-import { NoteResponse } from "core/models/Note";
-import { makePrivateRequest } from "core/utils/apiRequests";
-
-type Props = {}
-
-const Notes = (props: Props) => {
-
-  const [notesResponse, setNotesResponse] = useState<NoteResponse>();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const params = {
-      page: 0,
-      size: 2
-    }
-    setIsLoading(true);
-    try {
-      makePrivateRequest({url:"/api/v1/notes", params })
-        .then(
-          response => setNotesResponse(response.data)
-        )
-        .finally(() => {
-          setIsLoading(false)
-        })
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+import PrivateRoute from 'core/components/PrivateRoute'
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import NoteForm from './NoteForm'
+import Notes from './NoteList'
 
 
+const NoteRoute = () => {
   return (
-    <div className='main-container'>
-      {notesResponse?.content.map(note => 
-        <NoteCard key={note.id}>{note.noteText}</NoteCard>
-        )}
-    </div>
+    <Routes>
+      <Route path="/" element={<PrivateRoute />}>
+        <Route path="" element={<Notes />} />
+        <Route path=":routeId" element={<NoteForm />} />
+      </Route>
+    </Routes>
   )
 }
 
-export default Notes  
+export default NoteRoute
