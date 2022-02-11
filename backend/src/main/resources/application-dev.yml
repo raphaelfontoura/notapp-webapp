@@ -1,0 +1,18 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bd_notapp
+    username: postgres
+    password: 123456
+  jpa:
+    defer-datasource-initialization: true
+
+security:
+  oauth2:
+    client:
+      client-id: notapp-api
+      client-secret: notapp$secret$here
+
+jwt:
+  secret: $MySecret#NeedChangeHere!!
+  duration: 86400
