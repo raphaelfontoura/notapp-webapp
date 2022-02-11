@@ -1,6 +1,6 @@
 .navbar {
   background-color: #FDDC47;
-  padding: 25px 33px;
+  padding: 20px 33px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,12 +18,17 @@
   margin-right: 30px;
 }
 
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
 .navbar-logout-text {
   color: #474344;
   cursor: pointer;
 }
 
 #btn-new-note {
-  margin-left: 16px;
+  margin-left: 20px;
 }
 
