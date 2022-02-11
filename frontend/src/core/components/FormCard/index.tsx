@@ -1,5 +1,4 @@
 import './styles.css';
-import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
@@ -19,16 +18,10 @@ export type FormLogin = {
 const FormCard = ({ formTitle, buttonLabel, onSubmit, registerLink }: Props) => {
 
   const { register, formState: { errors }, handleSubmit } = useForm<FormLogin>();
-  const [hasError, setHasError] = useState(false);
 
   return (
     <form className='container login-form' onSubmit={handleSubmit(onSubmit)}>
       <h1 className="login-title">{formTitle}</h1>
-      {hasError && (
-        <div className="invalid-feedback">
-          <h3>The alien invasion has caused some error. Please, try again.</h3>
-        </div>
-      )}
       <div className="label-input-div">
         <label className="input-label">Email Address</label>
         {errors.username && (

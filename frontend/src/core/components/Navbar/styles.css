@@ -23,4 +23,7 @@
   cursor: pointer;
 }
 
+#btn-new-note {
+  margin-left: 16px;
+}
 

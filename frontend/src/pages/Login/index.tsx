@@ -1,11 +1,9 @@
 import "./styles.css";
-import Button from "core/components/Button";
 import { makeLogin } from "core/utils/apiRequests";
 import { saveSessionData } from "core/utils/auth";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FormCard, { FormLogin } from "core/components/FormCard";
+import { toast } from "react-toastify";
 
 
 const Login = () => {
@@ -13,20 +11,23 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data: FormLogin) => {
+    toast.update("Please wait...")
     makeLogin(data)
       .then(response => {
-        // setHasError(false);
         saveSessionData(response.data);
+        toast.success("You are in... create some notes!");
         navigate("/notes");
       })
-      .catch(() => {
-        // setHasError(true);
+      .catch((err: Error) => {
+        toast.error(err.message);
         navigate("/");
       })
   }
 
   return (
-    <FormCard formTitle="Log In" buttonLabel="Log in" onSubmit={onSubmit} registerLink={true}/>
+
+    <FormCard formTitle="Log In" buttonLabel="Log in" onSubmit={onSubmit} registerLink={true} />
+
   )
 };
 

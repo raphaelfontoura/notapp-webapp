@@ -1,16 +1,11 @@
 .main-container {
   display: flex;
-  gap: 26px;
+  gap: 16px;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin: 40px 100px
+  margin: 0px 120px 60px 120px;
 }
 
-#btn-new-note {
-  position: fixed;
-  bottom: 14px;
-  right: 14px;
-}
 
 

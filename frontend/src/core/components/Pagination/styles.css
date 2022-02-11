@@ -1,0 +1,8 @@
+.page-link {
+  cursor: pointer;
+}
+
+.disable {
+  pointer-events: none;
+  opacity: 0.4;
+}

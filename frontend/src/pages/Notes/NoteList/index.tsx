@@ -3,8 +3,9 @@ import React, { useCallback, useEffect, useState } from 'react'
 import NoteCard from "core/components/NoteCard";
 import { NoteResponse } from "core/models/Note";
 import { makePrivateRequest } from "core/utils/apiRequests";
-import { Link } from "react-router-dom";
-import Button from "core/components/Button";
+import { toast } from "react-toastify";
+import Pagination from "core/components/Pagination";
+
 
 type Props = {}
 
@@ -14,9 +15,11 @@ const Notes = (props: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
 
+  console.log(notesResponse);
+
   const getNotes = useCallback(() => {
     const params = {
-      page: page,
+      page,
       size: 4
     }
     setIsLoading(true);
@@ -38,21 +41,24 @@ const Notes = (props: Props) => {
   }, [getNotes]);
 
   const handleDelete = (nodeId: number) => {
-    makePrivateRequest({ url: `/api/v1/notes/${nodeId}`, method: "DELETE"})
+    makePrivateRequest({ url: `/api/v1/notes/${nodeId}`, method: "DELETE" })
       .then(
-        _response => getNotes()
-      )
+        _response => {
+          toast.success("Note erased.");
+          getNotes()
+        })
+      .catch(err => {
+        if (err.response.status === 401) toast.error("Please log in.");
+        if (err.response.status === 400) toast.error("Something wrong. Aliens?")
+      })
   }
 
 
   return (
     <>
-      <Link to={"new"}>
-        <button className="btn btn-primary" id="btn-new-note"> Create Note </button>
-      </Link>
       <div className='main-container'>
         {isLoading && (
-          <div className="spinner-border text-primary">
+          <div className="spinner-border text-primary fixed-top container mt-3">
             <span className="sr-only"></span>
           </div>
         )}
@@ -62,6 +68,9 @@ const Notes = (props: Props) => {
           </NoteCard>
         )}
       </div>
+      {notesResponse && (
+        <Pagination activePage={page} totalPages={notesResponse.totalPages} onChange={p => setPage(p)} />
+      )}
     </>
   )
 }

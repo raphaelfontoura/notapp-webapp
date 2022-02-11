@@ -2,12 +2,10 @@ import './styles.css';
 
 import Button from 'core/components/Button';
 import { makePrivateRequest } from 'core/utils/apiRequests';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-type ParamsId = {
-  routeId: string;
-}
 
 const NoteForm = () => {
 
@@ -20,9 +18,16 @@ const NoteForm = () => {
     };
     makePrivateRequest({ url: "api/v1/notes", method:"POST", data})
       .then(_response => {
+        toast.success("You note has saved!");
         navigate("/notes");
       })
-    console.log(text);
+      .catch( (err) => {
+        if (err.response.status === 400) toast.error("Some field is empty or invalid. Please verify.");
+        if (err.response.status === 401) {
+          toast.error("Please, log in.");
+          navigate("/");
+        };
+      })
   }
 
   const handleChange = (event:any) => {
