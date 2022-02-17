@@ -8,3 +8,11 @@
   border: none;
   text-transform: uppercase;
 }
+
+@media (max-width: 481px) {
+  .button-default {
+    width: auto;
+    height: 2.5em;
+    font-size: 1.1em;
+  }
+}
